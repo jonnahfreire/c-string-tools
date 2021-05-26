@@ -20,27 +20,24 @@ int lastIndexOf(char chr, char *str){
     // returns the last character occurrence in a string
     int i = 0, found = -1;
 
-    for(i; i < strlen(str); i++){
-        if(((int)str[i] == (int)chr) && (str[i] != '\0')){
-            found = i;
-        }
-    }
+    for(i; i < strlen(str); i++)
+    if(((int)str[i] == (int)chr) && (str[i] != '\0')) found = i;
+    
     return found;
 }
 
 char *concat(char* str1, char* str2) {
-	int len = strlen(str1) + strlen(str2);
-	char st1[strlen(str1)]; strcpy(st1, str1);
-	char st2[strlen(str2)]; strcpy(st2, str2);
+    int len = strlen(str1) + strlen(str2);
+    char st1[strlen(str1)]; strcpy(st1, str1);
+    char st2[strlen(str2)]; strcpy(st2, str2);
 
-	char *newstr = (char*)calloc(len, sizeof(char));
-	if(strlen(str2)>0) {
+    char *newstr = (char*)calloc(len, sizeof(char));
+    if(strlen(str2)>0) {
         strcpy(newstr, strcat(st1, st2));
         return newstr;
-	}else{
-	    free(newstr);
-        return str1;
-	}
+    }
+    free(newstr);
+    return str1;
 }
 
 char *slice(char *str, int start, int endStr){
@@ -50,12 +47,10 @@ char *slice(char *str, int start, int endStr){
     char *temp = (char *) calloc(strlen(str), sizeof(char));
     strcpy(temp, str);
 
-    for(i = start; i <= endStr; i++){
-        if(temp[i] != '\0'){
-            sliced[strlen(sliced)] = temp[i];
-        }
-    }
-
+    for(i = start; i <= endStr; i++)
+    if(temp[i] != '\0') sliced[strlen(sliced)] = temp[i];
+    
+    free(temp);
     return concat(sliced, "");
 }
 
@@ -66,11 +61,8 @@ int findIndex(char *str, char *tofind){
     if((index == -1) || (strlen(tofind) == 1)) return -1;
 
     for(i = index; i <= strlen(str); i++){
-        if(strcmp(tofind, slice(str, index, index+strlen(tofind)-1))){
-            index++;
-        }else{
-            break;
-        }
+        if(strcmp(tofind, slice(str, index, index+strlen(tofind)-1))) index++;
+        else break;
     }
     return index;
 }
