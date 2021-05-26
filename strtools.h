@@ -148,7 +148,7 @@ char *replaceStr(char *str, char *strRep, char *rep){
     // Replaces a given set of characters in a string by another string
     int index = 0;
 
-    if((strlen(strRep)) || (strlen(rep) == 0)) return (char*)'\0';
+    if((strlen(strRep) == 0) || (strlen(rep) == 0)) return (char*)'\0';
 
     if((strlen(removeStr(str, strRep)) != strlen(str)) && ((strlen(strRep)>1) && (strlen(rep)>1))){
         index = findIndex(str, strRep);
