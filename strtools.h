@@ -141,7 +141,7 @@ char *replaceStr(char *str, char *strRep, char *rep){
     if((strlen(strRep) == 0) || (strlen(rep) == 0)) return (char*)'\0';
 
     if((strlen(removeStr(str, strRep)) != strlen(str)) && ((strlen(strRep)>1) && (strlen(rep)>1))){
-        index = findIndex(str, strRep);
+        index = findStrIndex(str, strRep);
         if(index == 0) return concat(rep, slice(str, index+strlen(strRep), strlen(str)));
         else return concat(concat(slice(str, 0, index-1), rep), slice(str, index+strlen(strRep), strlen(str)));
 
