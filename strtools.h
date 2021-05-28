@@ -55,7 +55,7 @@ char *slice(char *str, int start, int endStr){
     return concat(sliced, "");
 }
 
-int findIndex(char *str, char *tofind){
+int findStrIndex(char *str, char *tofind){
     //Find index of a given string
     int i, index = indexOf(tofind[0], str);
 
