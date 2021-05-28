@@ -58,8 +58,9 @@ char *slice(char *str, int start, int endStr){
 int findStrIndex(char *str, char *tofind){
     //Find index of a given string
     int i, index = indexOf(tofind[0], str);
-
-    if((index == -1) || (strlen(tofind) == 1)) return -1;
+    
+    if(index == -1) return -1;
+    if(strlen(tofind) == 1) return index;
 
     for(i = index; i <= strlen(str); i++){
         if(strcmp(tofind, slice(str, index, index+strlen(tofind)-1))) index++;
