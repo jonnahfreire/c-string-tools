@@ -6,8 +6,8 @@ int indexOf(char chr, char *str){
     // returns the first character occurrence in a string
     int i = 0, found = -1;
 
-    for(i; i < strlen(str); i++){
-        if(((int)str[i] == (int)chr) && (str[i] != '\0')){
+    for(i; (str[i] != '\0'); i++){
+        if(((int)str[i] == (int)chr)){
             found = i;
             break;
         }
@@ -20,19 +20,20 @@ int lastIndexOf(char chr, char *str){
     // returns the last character occurrence in a string
     int i = 0, found = -1;
 
-    for(i; i < strlen(str); i++)
-    if(((int)str[i] == (int)chr) && (str[i] != '\0')) found = i;
+    for(i; (str[i] != '\0'); i++)
+    if(((int)str[i] == (int)chr)) found = i;
     
     return found;
 }
 
 char *concat(char* str1, char* str2) {
+    // Inserts str2 at the end of str1
     int len = strlen(str1) + strlen(str2);
     char st1[strlen(str1)]; strcpy(st1, str1);
     char st2[strlen(str2)]; strcpy(st2, str2);
 
     char *newstr = (char*)calloc(len, sizeof(char));
-    if(strlen(str2)>0) {
+    if(strlen(str2) > 0) {
         strcpy(newstr, strcat(st1, st2));
         return newstr;
     }
@@ -70,7 +71,6 @@ int findIndex(char *str, char *tofind){
 char *removeStr(char *str, char *strToRemove){
     //Remove a set of characters of a given string
     //return the new sized string
-
     int i, index = indexOf(strToRemove[0], str);
 
     if((index == -1)) return (char*)'\0';
@@ -91,8 +91,7 @@ char *removeStr(char *str, char *strToRemove){
 
 char *removeChr(char *str, char c){
     // Removes the first occurrence of a Character from a given string
-
-    int i=0, index=indexOf(c, str);
+    int i = 0, index = indexOf(c, str);
     if(index == -1) return (char*)'\0';
 
     for(i; i < strlen(str); i++){
@@ -109,7 +108,6 @@ char *removeChr(char *str, char c){
 
 char *removeAllChr(char *str, char c) {
     // Removes all occurrences of a given character in a string
-
     int i, index = indexOf(c, str);
     if(index == -1) return (char*)'\0';
 
@@ -130,8 +128,8 @@ int countChar(char *str, char chr){
     // Returns the length of occurrences of a given character in a string
     int i=0, counter=0;
 
-    for(i; i < strlen(str); i++)
-    if(((int)str[i] == (int)chr) && (str[i] != '\0'))  counter++;
+    for(i; (str[i] != '\0'); i++)
+    if(((int)str[i] == (int)chr))  counter++;
 
     return counter;
 }
