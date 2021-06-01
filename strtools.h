@@ -135,21 +135,21 @@ int countChar(char *str, char chr){
     return counter;
 }
 
-char *replaceStr(char *str, char *strRep, char *rep){
+char *replaceStr(char *str, char *substr, char *rep){
     // Replaces a given set of characters in a string by another string
     int index = 0;
-    
-    if((strlen(strRep) == 1) && (strlen(rep) == 0)) return removeAllChr(str, strRep[0]);
-    if((strlen(strRep) == 0) || (strlen(rep) == 0)) return (char*)'\0';
-    
-    if((strlen(removeStr(str, strRep)) != strlen(str)) && ((strlen(strRep)>1) && (strlen(rep)>1))){
-        index = findStrIndex(str, strRep);
-        if(index == 0) return concat(rep, slice(str, index+strlen(strRep), strlen(str)));
-        else return concat(concat(slice(str, 0, index-1), rep), slice(str, index+strlen(strRep), strlen(str)));
+
+    if((strlen(substr) == 1) && (strlen(rep) == 0)) return removeAllChr(str, substr[0]);
+    if((strlen(substr) == 0) || (strlen(rep) == 0)) return (char*)'\0';
+
+    if((strlen(removeStr(str, substr)) != strlen(str)) && ((strlen(substr)>1) && (strlen(rep)>1))){
+        index = findStrIndex(str, substr);
+        if(index == 0) return concat(rep, slice(str, index+strlen(substr), strlen(str)));
+        else return concat(concat(slice(str, 0, index-1), rep), slice(str, index+strlen(substr), strlen(str)));
 
     }else{
-        index = indexOf(strRep[0], str);
-        if(index == 0) return concat(rep, slice(str, index+strlen(strRep), strlen(str)));
+        index = indexOf(substr[0], str);
+        if(index == 0) return concat(rep, slice(str, index+strlen(substr), strlen(str)));
         else return concat(slice(str, 0, index-1), concat(rep, slice(str, index+1, strlen(str))));
     }
 }
